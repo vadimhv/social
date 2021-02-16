@@ -1,0 +1,17 @@
+.nav {
+    width: 20%;
+    margin-right: 10px;
+    background-color: rgb(214, 86, 86);
+    text-align: center;
+    padding: 10px;
+}
+
+.nav > div {
+    padding-bottom: 10px;
+}
+
+.item a{
+color: #fff;
+text-decoration: none;
+text-transform: uppercase;
+}

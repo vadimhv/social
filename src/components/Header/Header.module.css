@@ -1,0 +1,12 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: rgb(214, 86, 86);
+  }
+  
+img {
+    width: 40px;
+}
