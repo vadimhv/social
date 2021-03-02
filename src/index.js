@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './render/state';
+import store from './redux/store';
 
 let rerenderEntireContent = (state) => {
     ReactDOM.render(
