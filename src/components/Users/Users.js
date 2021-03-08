@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from "./Users.module.css";
 import userPhoto from "../../assets/img/user_moc.png";
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
 
@@ -12,13 +13,21 @@ const Users = (props) => {
 
     return (
         <div>
-
+            <div className={classes.pageNumberBlock}>
+                {
+                    pages.map(p => {
+                        return <span onClick={() => {props.changePage(p)}} className={props.currentPage === p && classes.selectedPage}>{p}</span>
+                    })
+                }
+            </div>
             {
                 props.users.map( user =>  <div key={user.id}>
                         <div className={classes.user_wrapper}>
                             <div className={classes.follow}>
                                 <div className={classes.img}>
-                                    <img src={user.photos.small != null ? user.photos.small : userPhoto}/>
+                                    <NavLink to={'/profile/' + user.id}>
+                                        <img src={user.photos.small != null ? user.photos.small : userPhoto}/>
+                                    </NavLink>
                                 </div>
                                 <div>
                                     {user.followed ? <button className={classes.btn} onClick={() => props.unfollow(user.id)}>UNFOLLOW</button> : <button className={classes.btn} onClick={() => props.follow(user.id)}>FOLLOW</button>}
@@ -46,13 +55,7 @@ const Users = (props) => {
                     </div>
                 )
             }
-            <div className={classes.pageNumberBlock}>
-                {
-                    pages.map(p => {
-                        return <span onClick={() => {props.changePage(p)}} className={props.currentPage === p && classes.selectedPage}>{p}</span>
-                    })
-                }
-            </div>
+
         </div>
     )
 }
