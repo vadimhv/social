@@ -2,6 +2,7 @@ import React from 'react';
 import classes from "./Users.module.css";
 import userPhoto from "../../assets/img/user_moc.png";
 import {NavLink} from "react-router-dom";
+import {usersAPI} from '../../API/api'
 
 const Users = (props) => {
 
@@ -30,7 +31,9 @@ const Users = (props) => {
                                     </NavLink>
                                 </div>
                                 <div>
-                                    {user.followed ? <button className={classes.btn} onClick={() => props.unfollow(user.id)}>UNFOLLOW</button> : <button className={classes.btn} onClick={() => props.follow(user.id)}>FOLLOW</button>}
+                                    {user.followed
+                                        ? <button disabled={props.followingInProgress.some(id => id === user.id)} className={classes.btn} onClick={() =>{props.unfollow(user.id);}}>UNFOLLOW</button>
+                                        : <button disabled={props.followingInProgress.some(id => id === user.id)} className={classes.btn} onClick={() =>{props.follow(user.id);}}>FOLLOW</button>}
                                 </div>
                             </div>
                             <div className={classes.info_wrapper}>
