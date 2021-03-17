@@ -1,0 +1,29 @@
+.formControl {
+    display: flex;
+    align-items: center;
+}
+.formControl textarea {
+    margin-right: 5px;
+}
+.formControl.error input,.formControl.error textarea{
+    border: 1px solid red;
+}
+
+.formControl.error span {
+    color: red;
+    font-size: 12px;
+}
+
+.formControl input {
+    padding: 10px 15px;
+}
+
+.formControl input[type="checkbox"]{
+    display: flex;
+    padding: 0;
+    margin-bottom: 0 !important;
+}
+
+.formControl input:first-child{
+    margin-bottom: 10px;
+}

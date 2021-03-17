@@ -14,7 +14,6 @@ header img {
 
 .loginBlock {
     display: flex;
-    justify-content: end;
     color: #fff;
     margin-right: 50px;
 }
