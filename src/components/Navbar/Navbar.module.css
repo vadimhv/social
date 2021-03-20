@@ -10,12 +10,12 @@
     padding-bottom: 10px;
 }
 
-.item a{
-color: #fff;
-text-decoration: none;
-text-transform: uppercase;
+.item a {
+    color: #f58f8f;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .item .active {
-    color: rgb(0, 0, 0)
+    color: #fff;
 }

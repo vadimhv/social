@@ -1,6 +1,5 @@
 .descriptionBlock{
     display: flex;
-    align-items: center;
     margin-bottom: 30px;
 }
 .name {
@@ -23,8 +22,9 @@
     margin-right: 10px;
 }
 .contacts {
-    display: flex;
     font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .social:after {
@@ -35,4 +35,26 @@
 .social:last-child:after{
     content: '';
     margin: 0;
+}
+
+.descriptionBlock form {
+
+}
+
+form textarea {
+    margin-right: 5px;
+    resize: none;
+    width: 300px;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.formSummaryError{
+    padding: 5px;
+    color: red;
+}
+
+.status {
+    margin: 10px 0;
 }

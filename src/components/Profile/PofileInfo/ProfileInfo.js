@@ -1,35 +1,71 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from './ProfileInfo.module.css';
 import Preloader from "../../common/preloader/Preloader";
-import ProfileStatus from './ProfileStatus';
+import ProfileStatus from "./ProfileStatus";
+import profilePhoto from '../../../assets/img/user_moc.png';
+import ProfileDataForm from "./ProfileDataForm";
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
-        return <Preloader />
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+
+    const [editMode, setEditMode] = useState(false);
+
+    if (!profile) {
+        return <Preloader/>
+    }
+
+
+    const onSubmit = (formData) => {
+        saveProfile(formData).then(
+            () => setEditMode(false)
+        );
     }
 
     return (
         <>
             <div className={classes.descriptionBlock}>
-                <div className={classes.avatar}><img src={props.profile.photos.large} /></div>
-                <div>
-                    <div className={classes.name}>{props.profile.fullName}</div>
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-                    {props.profile.lookingForAJob ? <span className={classes.desc}>В поисках работы</span> : null}
-                    <div className={classes.contacts}>
-                        <span className={classes.title}>Контакты:</span>
-                        {props.profile.contacts.facebook ? <div className={classes.social}><a href={`https://${props.profile.contacts.facebook}`}>facebook</a></div> : null}
-                        {props.profile.contacts.website ? <div className={classes.social}><a href={`https://${props.profile.contacts.website}`}>website</a></div> : null}
-                        {props.profile.contacts.vk ? <div className={classes.social}><a href={`https://${props.profile.contacts.vk}`}>vk</a></div> : null}
-                        {props.profile.contacts.twitter ? <div className={classes.social}><a href={`${props.profile.contacts.twitter}`}>twitter</a></div> : null}
-                        {props.profile.contacts.instagram ? <div className={classes.social}><a href={`https://${props.profile.contacts.instagram}`}>instagram</a></div> : null}
-                        {props.profile.contacts.youtube ? <div className={classes.social}><a href={`https://${props.profile.contacts.youtube}`}>youtube</a></div> : null}
-                        {props.profile.contacts.github ? <div className={classes.social}><a href={`https://${props.profile.contacts.github}`}>github</a></div> : null}
-                    </div>
-                </div>
+                <div className={classes.avatar}><img src={profile.photos.large || profilePhoto}/></div>
+
+                {editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}
+                                             savePhoto={savePhoto}/> :
+                    <ProfileData profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner}
+                                 goToEditMode={() => {
+                                     setEditMode(true)
+                                 }}/>}
             </div>
+
+
         </>
     )
+}
+
+const ProfileData = ({profile, status, updateStatus, isOwner, goToEditMode}) => {
+    return (
+        <div>
+
+            <div className={classes.name}>{profile.fullName}</div>
+            <ProfileStatus status={status} updateStatus={updateStatus}/>
+            <div className={classes.desc}>About me: {profile.aboutMe}</div>
+            {profile.lookingForAJobDescription &&
+            <span className={classes.desc}>{profile.lookingForAJobDescription}</span>}
+            <div className={classes.contacts}>
+                <span className={classes.title}><b>Contacts:</b></span>
+                {Object.entries(profile.contacts).map(key => {
+                    if (key[1] === null) {
+                        return null
+                    } else {
+                        return <Contact key={key[0]} contactTitle={key[0]} contactValue={key[1]}/>
+                    }
+                })}
+            </div>
+            {isOwner && <div>
+                <button onClick={goToEditMode}>Edit profile</button>
+            </div>}
+        </div>
+    )
+}
+
+const Contact = ({contactTitle, contactValue}, profile) => {
+    return <div className={classes.social}><a href={contactValue}>{contactTitle}</a></div>
 }
 
 export default ProfileInfo;

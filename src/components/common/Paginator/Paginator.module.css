@@ -1,0 +1,33 @@
+.pageNumberBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.pageNumberBlock button {
+    margin-right: 20px;
+    width: 30px;
+}
+
+.pageNumberBlock button:last-child {
+    margin-right: 0px;
+    margin-left: 20px;
+}
+
+.pageNumberBlock span {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.pageNumberBlock span:last-child{
+    margin-right: 0px;
+}
+
+
+
+.selectedPage{
+    font-weight: bold;
+    color: rgb(214, 86, 86);
+}

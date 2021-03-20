@@ -4,6 +4,7 @@
 }
 .formControl textarea {
     margin-right: 5px;
+    resize: none;
 }
 .formControl.error input,.formControl.error textarea{
     border: 1px solid red;
@@ -26,4 +27,9 @@
 
 .formControl input:first-child{
     margin-bottom: 10px;
+}
+
+
+.wrapper {
+    display: flex;
 }

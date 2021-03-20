@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {
     follow, requestUsers,
-    setCurrentPage, toggleFollowingProgress,
+    setCurrentPage, setTotalUsersCount, toggleFollowingProgress,
     unfollow
 } from "../../redux/users-reducer";
 import Users from "./Users";
@@ -19,11 +19,13 @@ import {
 
 class UsersContainer extends Component {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props;
+        this.props.requestUsers(currentPage, pageSize);
     }
 
     changePage = (pageNumber) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize);
+        const {pageSize} = this.props;
+        this.props.requestUsers(pageNumber, pageSize);
         this.props.setCurrentPage(pageNumber);
     }
 
@@ -71,4 +73,4 @@ let mapStateToProps = (state) => {
 
 
 export default compose(connect(mapStateToProps,
-    {setCurrentPage, toggleFollowingProgress,  requestUsers, follow, unfollow}))(UsersContainer);
+    {setCurrentPage, toggleFollowingProgress, setTotalUsersCount,  requestUsers, follow, unfollow}))(UsersContainer);

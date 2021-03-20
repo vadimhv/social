@@ -10,3 +10,9 @@ button {
     color: #fff;
     border-radius: 10px;
 }
+
+.myPosts form {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}

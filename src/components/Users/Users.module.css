@@ -54,27 +54,6 @@
     font-size: 12px;
 }
 
-.selectedPage{
-    font-weight: bold;
-    color: rgb(214, 86, 86);
-}
-
-.pageNumberBlock {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-    font-size: 14px;
-}
-
-.pageNumberBlock span {
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.pageNumberBlock span:last-child{
-    margin-right: 0px;
-}
-
 .loaderBlock {
     position: relative;
     z-index: 10;
